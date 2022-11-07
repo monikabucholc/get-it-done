@@ -1,0 +1,65 @@
+.todo-item {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 16px;
+    margin: 8px 0px;
+    color: #454D57;
+    background: #FFFFFF;
+
+    border-radius: 16px;
+    list-style-type: none;
+}
+
+.task {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}  
+
+
+.task-name {
+    display: flex;
+    width: 100%;
+    padding: 0px 16px 0px 0px;
+    flex-direction: row;
+    overflow-wrap: break-word;
+    word-break: break-all;  
+}
+
+.btns {
+    display: flex;
+    flex-direction: row;
+}
+
+.done-btn {
+    padding: 8px;
+    background: none;
+    border: none;
+    color: #454D57;
+}
+.task-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.tag-name-label {
+    font-size: 0.875rem;
+    padding: 0px 16px 0px 0px;
+}
+
+.select-tags {
+    color: #454D57;
+    width: 7rem;
+    border: 1px solid #E7EAED;
+    background-color: #F8F9FB;
+    border-radius: 4px;
+}  
+
+.select-tags-options {
+    color: #454D57;
+    background-color: #F8F9FB;
+    border: none;
+}
+
