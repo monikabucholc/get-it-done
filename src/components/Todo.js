@@ -5,6 +5,7 @@ import './Todo.css';
 const Todo = ({ labels, task, todo, setTodos, todos, selectedTaskLabel, setSelectedTaskLabel }) => {
     const removeTaskHandler = () => {
         setTodos(todos.filter((element) => element.id !== todo.id)); 
+        console.log("test");
     }
 
     const completeHandler = () => {
