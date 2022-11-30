@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
+
 import './App.css'
 
-//Custom components
+//Components
 import Navigation from './components/Navigation';
 import Sidemenu from './components/Sidemenu';
 import Todolist from './components/Todolist';
 
-//Files
-// import './App.css';
+//Contexts
+import { LabelProvider } from './components/LabelContext';
+import { TodoProvider } from './components/TodoContext'
 
 function App() {
   
-  const [todos, setTodos] = useState([]);
-  
-  const [labels, setLabels] = useState([]);
   const [filteredTodos, setFilteredTodos] = useState([]);
   const [selectedLabel, setSelectedLabel] = useState("");
   const [taskLabel, setTaskLabel] = useState("");
@@ -26,28 +25,24 @@ function App() {
 
   return (
     <div className="App">
-      <Navigation        
-        todos={todos}
-        setTodos={setTodos}/>
-      <div className="Content">
-        <Sidemenu 
-          labels={labels}
-          setLabels={setLabels}
-          selectedLabel={selectedLabel}
-          setSelectedLabel={setSelectedLabel}
-        />
-        <Todolist 
-          todos={todos}
-          setTodos={setTodos}
-          labels={labels}
-          setLabel={setLabels}
-          filteredTodos={filteredTodos}
-          setFilteredTodos={setFilteredTodos}
-          selectedLabel={selectedLabel}
-          setSelectedLabel={setSelectedLabel}
-          taskLabel={taskLabel}
-          setTaskLabel={setTaskLabel}/>
-      </div>
+      <LabelProvider>
+        <TodoProvider>
+          <Navigation/>
+          <div className="Content">
+            <Sidemenu 
+              selectedLabel={selectedLabel}
+              setSelectedLabel={setSelectedLabel}
+            />
+            <Todolist 
+              filteredTodos={filteredTodos}
+              setFilteredTodos={setFilteredTodos}
+              selectedLabel={selectedLabel}
+              setSelectedLabel={setSelectedLabel}
+              taskLabel={taskLabel}
+              setTaskLabel={setTaskLabel}/>
+          </div>
+        </TodoProvider>
+      </LabelProvider>
     </div>  
   );
 }
