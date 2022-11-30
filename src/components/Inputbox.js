@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { TodoContext } from './TodoContext';
+
 import './Inputbox.css';
 import _uniqueId from 'lodash/uniqueId';
 
-const Inputbox = ({ todos, setTodos }) => {
-    
+const Inputbox = () => {
+    const [todos, setTodos] = useContext(TodoContext);
     const [inputTask, setInputTask] = useState("");
     
     const inputTaskHandler = (event) => {
@@ -19,6 +21,7 @@ const Inputbox = ({ todos, setTodos }) => {
             priority: 1,
             label: "",
             color: "rgb(178, 183, 190)",
+            labelId: 0,
             id: _uniqueId()
             }]);
         setInputTask("");

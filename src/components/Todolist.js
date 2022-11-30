@@ -1,21 +1,19 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Todo from './Todo';
+import { TodoContext } from './TodoContext'
 import './Todolist.css'
 
-const Todolist = ({ todos, setTodos, labels, selectedLabel, setSelectedLabel, taskLabel, setTaskLabel }) => {
+const Todolist = ( ) => {
+    const [todos] = useContext(TodoContext);
     return (
         <ul className="todolist-container">
             {todos.map((todo) => 
                 (
                 <Todo 
-                task={todo.task} 
                 key={todo.id} 
-                labels={labels}
-                setTodos={setTodos} 
-                todos={todos}
+                task={todo.task} 
                 todo={todo}
-                taskLabel={taskLabel}
-                setTaskLabel={setTaskLabel} />
+                />
             ))}
         </ul>
     )

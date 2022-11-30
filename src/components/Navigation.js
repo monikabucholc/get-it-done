@@ -4,15 +4,11 @@ import './Navigation.css';
 
 
 
-const Navigation = ({ inputTask, setInputTask, todos, setTodos }) => {
+const Navigation = () => {
     return (
     <nav className="navbar">
        <img src={require("../images/Getitdone.png")} width="184" height="24" alt="Get It Done!" className="logo"/>
-        <Inputbox className="inputbox"
-            inputTask={inputTask} 
-            setInputTask={setInputTask}
-            todos={todos}
-            setTodos={setTodos} />
+        <Inputbox className="inputbox"/>
         <p className="logout">Log Out</p>
     </nav>
     )

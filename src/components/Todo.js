@@ -1,9 +1,12 @@
-import React from 'react';
-import { createPortal } from 'react-dom';
+import React, { useContext } from 'react';
+import { LabelContext } from './LabelContext';
+import { TodoContext } from './TodoContext';
 import './Todo.css';
 
 
-const Todo = ({ labels, task, todo, setTodos, todos, taskLabel, setTaskLabel }) => {
+const Todo = ({ task, todo }) => {
+    const [labels] = useContext(LabelContext);
+    const [todos, setTodos] = useContext(TodoContext);
     const removeTaskHandler = () => {
         setTodos(todos.filter((element) => element.id !== todo.id)); 
     }
@@ -26,7 +29,8 @@ const Todo = ({ labels, task, todo, setTodos, todos, taskLabel, setTaskLabel }) 
             return {
             ...element,
             label: event.target.value,
-            color: event.target.options[event.target.selectedIndex].getAttribute('data-color')
+            color: event.target.options[event.target.selectedIndex].getAttribute('data-color'),
+            labelId: event.target.options[event.target.selectedIndex].getAttribute('data-labelId')
             }
         }
         return element;
@@ -38,8 +42,8 @@ const Todo = ({ labels, task, todo, setTodos, todos, taskLabel, setTaskLabel }) 
     return (
         <div>
             <li 
-                className={`todo-item ${todo.completed ? "completed" : ""}`} 
-                style= {{ border: `6px solid ${todo.color}` }}>
+            className={`todo-item ${todo.completed ? "completed" : ""}`} 
+            style= {{ border: `6px solid ${todo.color}` }}>
                 <div className="task">
                     <div className="task-name">{task}</div>
                     <div className="btns">
@@ -49,10 +53,11 @@ const Todo = ({ labels, task, todo, setTodos, todos, taskLabel, setTaskLabel }) 
                 </div>
                 <div className="task-actions">
                     <div className="tag-name-label"><i className="fa-solid fa-tag" /> Label</div>
-                    <select onInput={taskLabelHandler} id="select-tags" className="select-tags" name="select-tags">
-                        <option className="select-tags-options" color="rgb(69, 77, 87)" value="none" name="none"></option>
+                    <select onChange={taskLabelHandler} id="select-tags" className="select-tags" name="select-tags">
+                        <option className="select-tags-options" value="" data-labelId="0" data-color="rgb(178, 183, 190)" name="none" selected></option>
                         {labels.map((element) => (
                             <option className="select-tags-options" 
+                                data-labelId={element.id}
                                 data-color={element.color}
                                 value={element.name}
                                 name={element.name}>

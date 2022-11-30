@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { LabelContext } from './LabelContext'
 import LabelTag from './LabelTag';
 import _uniqueId from 'lodash/uniqueId';
 import './Sidemenu.css'
 
 
-const Sidemenu = ({ labels, setLabels, selectedLabel, setSelectedLabel }) => {
-
+const Sidemenu = () => {
+    const [labels, setLabels] = useContext(LabelContext);
     const [inputLabel, setInputLabel] = useState("");
     const inputHandler = (event) => 
-    setInputLabel(event.target.value);
-
-    
+        setInputLabel(event.target.value);
     const inputLabelHandler = (event) => {
         event.preventDefault();
         setLabels([...labels, {
@@ -33,11 +32,7 @@ const Sidemenu = ({ labels, setLabels, selectedLabel, setSelectedLabel }) => {
                 {labels.map((label) => (
                     <LabelTag
                     key={label.id}
-                    labels={labels}
-                    setLabels={setLabels}
                     label={label}
-                    selectedLabel={selectedLabel}
-                    setSelectedLabel={setSelectedLabel}
                     />
                 ))}  
             </ul>
