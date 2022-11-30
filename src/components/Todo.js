@@ -1,11 +1,11 @@
 import React from 'react';
+import { createPortal } from 'react-dom';
 import './Todo.css';
 
 
-const Todo = ({ labels, task, todo, setTodos, todos, selectedTaskLabel, setSelectedTaskLabel }) => {
+const Todo = ({ labels, task, todo, setTodos, todos, taskLabel, setTaskLabel }) => {
     const removeTaskHandler = () => {
         setTodos(todos.filter((element) => element.id !== todo.id)); 
-        console.log("test");
     }
 
     const completeHandler = () => {
@@ -20,13 +20,26 @@ const Todo = ({ labels, task, todo, setTodos, todos, selectedTaskLabel, setSelec
         }))
     }
 
+   const taskLabelHandler = (event) => {
+    setTodos(todos.map((element) => {
+        if (element.id === todo.id) {
+            return {
+            ...element,
+            label: event.target.value,
+            color: event.target.options[event.target.selectedIndex].getAttribute('data-color')
+            }
+        }
+        return element;
+    }))
+   }
     
 
+   
     return (
         <div>
             <li 
                 className={`todo-item ${todo.completed ? "completed" : ""}`} 
-                style= {{ border: "8px solid #B2B7BE" }}>
+                style= {{ border: `6px solid ${todo.color}` }}>
                 <div className="task">
                     <div className="task-name">{task}</div>
                     <div className="btns">
@@ -36,10 +49,15 @@ const Todo = ({ labels, task, todo, setTodos, todos, selectedTaskLabel, setSelec
                 </div>
                 <div className="task-actions">
                     <div className="tag-name-label"><i className="fa-solid fa-tag" /> Label</div>
-                    <select className="select-tags" name="select-tags"  >
-                        <option className="select-tags-options" value="none" name="none"></option>
+                    <select onInput={taskLabelHandler} id="select-tags" className="select-tags" name="select-tags">
+                        <option className="select-tags-options" color="rgb(69, 77, 87)" value="none" name="none"></option>
                         {labels.map((element) => (
-                            <option className="select-tags-options" value={element.name} name={element.name}>{element.name}</option>
+                            <option className="select-tags-options" 
+                                data-color={element.color}
+                                value={element.name}
+                                name={element.name}>
+                                    {element.name}
+                            </option>
                         ))}
                     </select>
                 </div>

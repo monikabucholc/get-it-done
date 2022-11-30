@@ -37,3 +37,10 @@
     cursor: pointer;
 }
 
+.color-btn {
+    margin: 0px;
+    padding: 4px 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}

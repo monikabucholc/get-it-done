@@ -2,7 +2,7 @@ import React from 'react';
 import Todo from './Todo';
 import './Todolist.css'
 
-const Todolist = ({ todos, setTodos, labels, selectedLabel, setSelectedLabel, selectedTaskLabel, setSelectedTaskLabel }) => {
+const Todolist = ({ todos, setTodos, labels, selectedLabel, setSelectedLabel, taskLabel, setTaskLabel }) => {
     return (
         <ul className="todolist-container">
             {todos.map((todo) => 
@@ -14,8 +14,8 @@ const Todolist = ({ todos, setTodos, labels, selectedLabel, setSelectedLabel, se
                 setTodos={setTodos} 
                 todos={todos}
                 todo={todo}
-                selectedTaskLabel={selectedTaskLabel}
-                setSelectedTaskLabel={setSelectedTaskLabel} />
+                taskLabel={taskLabel}
+                setTaskLabel={setTaskLabel} />
             ))}
         </ul>
     )

@@ -10,13 +10,13 @@ import Todolist from './components/Todolist';
 // import './App.css';
 
 function App() {
-  const [inputTask, setInputTask] = useState("");
+  
   const [todos, setTodos] = useState([]);
-  const [inputLabel, setInputLabel] = useState("");
+  
   const [labels, setLabels] = useState([]);
   const [filteredTodos, setFilteredTodos] = useState([]);
   const [selectedLabel, setSelectedLabel] = useState("");
-  const [selectedTaskLabel, setSelectedTaskLabel] = useState("");
+  const [taskLabel, setTaskLabel] = useState("");
 
   // const [date, setDate] = useState("");
   // const [priority, setPriority] = useState(1);
@@ -26,17 +26,13 @@ function App() {
 
   return (
     <div className="App">
-      <Navigation 
-        inputTask={inputTask} 
-        setInputTask={setInputTask}
+      <Navigation        
         todos={todos}
         setTodos={setTodos}/>
       <div className="Content">
         <Sidemenu 
           labels={labels}
           setLabels={setLabels}
-          setInputLabel={setInputLabel}
-          inputLabel={inputLabel}
           selectedLabel={selectedLabel}
           setSelectedLabel={setSelectedLabel}
         />
@@ -49,8 +45,8 @@ function App() {
           setFilteredTodos={setFilteredTodos}
           selectedLabel={selectedLabel}
           setSelectedLabel={setSelectedLabel}
-          selectedTaskLabel={selectedTaskLabel}
-          setSelectedTaskLabel={setSelectedTaskLabel}/>
+          taskLabel={taskLabel}
+          setTaskLabel={setTaskLabel}/>
       </div>
     </div>  
   );
