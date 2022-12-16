@@ -1,13 +1,29 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import Todo from './Todo';
 import { TodoContext } from './TodoContext'
 import './Todolist.css'
 
-const Todolist = ( ) => {
-    const [todos] = useContext(TodoContext);
+const Todolist = ({ status,  }) => {
+    const { todosValue, filteredTodosValue } = useContext(TodoContext);
+    const [todos] = todosValue;
+    const [filteredTodos, setFilteredTodos] = filteredTodosValue;
+
+    useEffect(() => {
+        console.log("elo");
+        filterHandler();
+        }, [todos, status])
+
+
+        const filterHandler = () => {
+            if (status.labelId === "0") {
+                setFilteredTodos(todos);
+            } else {
+            setFilteredTodos(todos.filter((todo) => todo.labelId === status.labelId))
+            }
+        }
     return (
         <ul className="todolist-container">
-            {todos.map((todo) => 
+            {filteredTodos.map((todo) => 
                 (
                 <Todo 
                 key={todo.id} 

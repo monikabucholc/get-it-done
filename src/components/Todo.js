@@ -1,12 +1,15 @@
 import React, { useContext } from 'react';
 import { LabelContext } from './LabelContext';
 import { TodoContext } from './TodoContext';
+import Dropdown from 'react-bootstrap/Dropdown';
 import './Todo.css';
 
 
 const Todo = ({ task, todo }) => {
     const [labels] = useContext(LabelContext);
-    const [todos, setTodos] = useContext(TodoContext);
+    const { todosValue } = useContext(TodoContext);
+    const [todos, setTodos] = todosValue;
+    //const [filteredTodos, setFilteredTodos] = filteredTodosValue;
     const removeTaskHandler = () => {
         setTodos(todos.filter((element) => element.id !== todo.id)); 
     }
@@ -23,22 +26,46 @@ const Todo = ({ task, todo }) => {
         }))
     }
 
-   const taskLabelHandler = (event) => {
-    setTodos(todos.map((element) => {
-        if (element.id === todo.id) {
-            return {
-            ...element,
-            label: event.target.value,
-            color: event.target.options[event.target.selectedIndex].getAttribute('data-color'),
-            labelId: event.target.options[event.target.selectedIndex].getAttribute('data-labelId')
-            }
+
+    const taskLabelHandler = (event) => {
+        console.log(event)
+        if (event === "0") {
+            setTodos(todos.map((element) => {
+                if (element.id === todo.id) {
+                    return {
+                        ...element,
+                            label: "",
+                            color: "rgb(178, 183, 190)",
+                            labelId: "0"
+                    }  
+                }
+            return element;
+            }))
+        } else { 
+            labels.map((l) => {
+                if (l.id === event) {
+                    setTodos(todos.map((element) => {
+                        if (element.id === todo.id) {
+                            return {
+                                ...element,
+                                label: l.name,
+                                color: l.color,
+                                labelId: l.id
+                            }  
+                        }
+                    return element;
+                    }))
+                }
+                return l 
+            })
         }
-        return element;
-    }))
-   }
+    }
+        
     
 
-   
+
+
+
     return (
         <div>
             <li 
@@ -52,19 +79,20 @@ const Todo = ({ task, todo }) => {
                     </div>
                 </div>
                 <div className="task-actions">
-                    <div className="tag-name-label"><i className="fa-solid fa-tag" /> Label</div>
-                    <select onChange={taskLabelHandler} id="select-tags" className="select-tags" name="select-tags">
-                        <option className="select-tags-options" value="" data-labelId="0" data-color="rgb(178, 183, 190)" name="none" selected></option>
-                        {labels.map((element) => (
-                            <option className="select-tags-options" 
-                                data-labelId={element.id}
-                                data-color={element.color}
-                                value={element.name}
-                                name={element.name}>
-                                    {element.name}
-                            </option>
-                        ))}
-                    </select>
+                    <Dropdown onSelect={taskLabelHandler}>
+                        <Dropdown.Toggle  variant="success" id="dropdown-basic">
+                            <i className="fa-solid fa-tag" style={{ color: `${todo.color}` }} />
+                                { todo.labelId !== "0" ? todo.label : "Choose label" }
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                            <Dropdown.Item eventKey="0">No label</Dropdown.Item>
+                            {labels.map((element) => (
+                            <Dropdown.Item eventKey={element.id}>
+                                {element.name}
+                            </Dropdown.Item>
+                            ))}
+                        </Dropdown.Menu>
+                    </Dropdown>
                 </div>
             </li>
         </div>

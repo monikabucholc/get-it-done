@@ -66,3 +66,42 @@ p:hover {
 @media screen and (max-width: 600px) {
     .sidemenu {display: none} 
 }  
+
+.label-tag {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    color: #454D57;
+    list-style: none;
+    gap: 8px;
+    margin: 0px;
+
+}
+
+.label-tab-icon-text {
+    display: flex;
+    color: rgb(178, 183, 190);
+    width: 100%;
+    flex-direction: row;
+    align-content: center;
+    align-items:center;
+    gap: 8px;
+    margin: 0px;
+}
+
+.label-text {
+  display: flex;
+  color: #454D57;
+  flex-wrap: wrap;
+  overflow-wrap: break-word;
+  word-break: break-all; 
+}
+
+.label-filter-button {
+    margin: 8px 0px;
+    padding: 0px;
+    background: none;
+    border: none;
+}

@@ -5,7 +5,10 @@ import './Inputbox.css';
 import _uniqueId from 'lodash/uniqueId';
 
 const Inputbox = () => {
-    const [todos, setTodos] = useContext(TodoContext);
+    const { todosValue } = useContext(TodoContext);
+    const [todos, setTodos] = todosValue;
+    
+    
     const [inputTask, setInputTask] = useState("");
     
     const inputTaskHandler = (event) => {
@@ -17,11 +20,12 @@ const Inputbox = () => {
         setTodos([...todos, {
             task: inputTask,
             completed: false,
+            deleted: false,
             date: "",
             priority: 1,
             label: "",
             color: "rgb(178, 183, 190)",
-            labelId: 0,
+            labelId: "0",
             id: _uniqueId()
             }]);
         setInputTask("");

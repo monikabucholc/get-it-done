@@ -9,7 +9,9 @@ import './LabelTag.css'
 
 const LabelTag = ({ label }) => {
     const [labels, setLabels] = useContext(LabelContext);
-    const [todos, setTodos] = useContext(TodoContext);
+    const { todosValue, filteredTodosValue } = useContext(TodoContext);
+    const [todos, setTodos] = todosValue;
+    //const [filteredTodos, setFilteredTodos] = filteredTodosValue;
     const [show, setShow] = useState(false);
     const colors = [
         "rgb(139, 66, 66)",
@@ -63,18 +65,20 @@ const LabelTag = ({ label }) => {
             return todo;
         }))
         setLabels(labels.filter((element) => element.id !== label.id)); 
+        
     }
+
+    
+        
+    
     // const selectLabelHandler = () => {
     //     setSelectedLabel(label.name);
     // }
-
-    
-
 return (
     
         <div className="label-tag" >
             <div className="label-tab-icon-text">
-                <i className="fa-solid fa-tag" style={{color: label.color}} />
+                <i className="fa-solid fa-tag" />
                 <li className="label-text">{label.name}</li>
             </div>
             <button onClick={handleShow} className="colors-btn" style={{color: label.color}}><i className="fa-solid fa-circle" /></button>

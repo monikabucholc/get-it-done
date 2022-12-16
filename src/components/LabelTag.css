@@ -54,3 +54,10 @@
     border: none;
     cursor: pointer;
 }
+
+.label-filter-button {
+    margin: 8px 0px;
+    padding: 0px;
+    background: none;
+    border: none;
+}
