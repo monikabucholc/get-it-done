@@ -4,13 +4,8 @@ export const TodoContext = createContext();
 
 export const TodoProvider = (props) => {
     const [todos, setTodos] = useState([]);
-    const [filteredTodos, setFilteredTodos] = useState([]);
     return (
-        <TodoContext.Provider 
-            value={{ 
-                todosValue: [todos, setTodos], 
-                filteredTodosValue: [filteredTodos, setFilteredTodos]
-            }}>
+        <TodoContext.Provider value={[todos, setTodos]}>
             {props.children}
         </TodoContext.Provider>
     )

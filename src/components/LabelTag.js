@@ -9,9 +9,7 @@ import './LabelTag.css'
 
 const LabelTag = ({ label }) => {
     const [labels, setLabels] = useContext(LabelContext);
-    const { todosValue, filteredTodosValue } = useContext(TodoContext);
-    const [todos, setTodos] = todosValue;
-    //const [filteredTodos, setFilteredTodos] = filteredTodosValue;
+    const [todos, setTodos] = useContext(TodoContext);
     const [show, setShow] = useState(false);
     const colors = [
         "rgb(139, 66, 66)",

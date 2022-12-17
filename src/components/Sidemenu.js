@@ -10,9 +10,6 @@ import './Sidemenu.css'
 const Sidemenu = ({ status, setStatus }) => {
     const [labels, setLabels] = useContext(LabelContext);
     const [inputLabel, setInputLabel] = useState("");
-    //const { todosValue, filteredTodosValue } = useContext(TodoContext);
-    //const [todos] = todosValue;
-    //const [filteredTodos, setFilteredTodos] = filteredTodosValue;
 
     const inputHandler = (event) => 
         setInputLabel(event.target.value);
@@ -32,7 +29,7 @@ const Sidemenu = ({ status, setStatus }) => {
     }
 
 
-    const statusHandler = (e) => {
+    const statusLabelHandler = (e) => {
         setStatus({
             labelId: e,
             date: false,
@@ -40,16 +37,24 @@ const Sidemenu = ({ status, setStatus }) => {
         })
     }
 
+    const statusPriorityHandler = (e) => {
+        setStatus({
+            labelId: "0",
+            date: false,
+            priority: true
+        })
+    }
+
     const resetStatusHandler = (e) => {
         e.preventDefault();
         setStatus({
-            labelId: 0,
+            labelId: "0",
             date: false,
             priority: false
         });
         document.getElementById("select-filter-tags").selectedIndex = 0;
     }
-    
+
     // const filterTodoHandler = () => {
     //     setFilteredTodos(filteredTodos.filter((todo) => todo.labelId === label.id))
     // }
@@ -77,12 +82,11 @@ const Sidemenu = ({ status, setStatus }) => {
                 <button onClick={inputLabelHandler} type="submit" className="label-btn" name="addlabel"><i className="fa-solid fa-plus" /></button>
             </form>   
             <div className="main-category"><i className="fa-solid fa-filter" />&nbsp; Sort</div>
-            <div className="secondary-category">Label</div>
-            <Dropdown onSelect={statusHandler}>
+            
+                <Dropdown onSelect={statusLabelHandler}>
                         <Dropdown.Toggle  variant="success" id="dropdown-basic">
-                           Choose label 
+                           Label 
                         </Dropdown.Toggle>
-                        
                         <Dropdown.Menu>
                         <Dropdown.Item eventKey="0">All</Dropdown.Item>
                             {labels.map((element) => (
@@ -91,9 +95,9 @@ const Sidemenu = ({ status, setStatus }) => {
                             </Dropdown.Item>
                             ))}
                         </Dropdown.Menu>
-                    </Dropdown>
+                </Dropdown>
                 <div className="secondary-category">Date</div>
-                <div className="secondary-category">Priority</div>
+                <button onClick={statusPriorityHandler} className="secondary-category">Priority</button>
                 <button onClick={resetStatusHandler} className="label-btn" type="reset">Reset Filters</button>
 
      

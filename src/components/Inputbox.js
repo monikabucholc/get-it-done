@@ -5,8 +5,7 @@ import './Inputbox.css';
 import _uniqueId from 'lodash/uniqueId';
 
 const Inputbox = () => {
-    const { todosValue } = useContext(TodoContext);
-    const [todos, setTodos] = todosValue;
+    const [todos, setTodos] = useContext(TodoContext);
     
     
     const [inputTask, setInputTask] = useState("");
@@ -22,7 +21,7 @@ const Inputbox = () => {
             completed: false,
             deleted: false,
             date: "",
-            priority: 1,
+            priority: "1",
             label: "",
             color: "rgb(178, 183, 190)",
             labelId: "0",

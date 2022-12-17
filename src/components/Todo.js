@@ -7,9 +7,7 @@ import './Todo.css';
 
 const Todo = ({ task, todo }) => {
     const [labels] = useContext(LabelContext);
-    const { todosValue } = useContext(TodoContext);
-    const [todos, setTodos] = todosValue;
-    //const [filteredTodos, setFilteredTodos] = filteredTodosValue;
+    const [todos, setTodos] = useContext(TodoContext);
     const removeTaskHandler = () => {
         setTodos(todos.filter((element) => element.id !== todo.id)); 
     }
@@ -28,7 +26,6 @@ const Todo = ({ task, todo }) => {
 
 
     const taskLabelHandler = (event) => {
-        console.log(event)
         if (event === "0") {
             setTodos(todos.map((element) => {
                 if (element.id === todo.id) {
@@ -61,8 +58,21 @@ const Todo = ({ task, todo }) => {
         }
     }
         
+    const priorityHandler = (event) => {
+        setTodos(todos.map((element) => {
+            if (element.id === todo.id) {
+                return {
+                ...element,
+                priority: event
+                }
+            }
+            return element;
+        }))
+    }
+
     
 
+    
 
 
 
@@ -93,6 +103,27 @@ const Todo = ({ task, todo }) => {
                             ))}
                         </Dropdown.Menu>
                     </Dropdown>
+                    <Dropdown onSelect={priorityHandler}>
+                        <Dropdown.Toggle  variant="success" id="dropdown-basic">
+                            <i className="fa-solid fa-star" />
+                               { todo.priority } 
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                            <Dropdown.Item eventKey="1">1</Dropdown.Item>
+                            <Dropdown.Item eventKey="2">2</Dropdown.Item>
+                            <Dropdown.Item eventKey="3">3</Dropdown.Item>
+                            <Dropdown.Item eventKey="4">4</Dropdown.Item>
+                            <Dropdown.Item eventKey="5">5</Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
+                    {/* <select onChange={priorityHandler} id="select-tags" className="select-tags" name="select-tags">
+                        <option className="select-tags-options" value="1" name="1">1</option>
+                        <option className="select-tags-options" value="2" name="2">2</option>
+                        <option className="select-tags-options" value="3" name="3">3</option>
+                        <option className="select-tags-options" value="4" name="4">4</option>
+                        <option className="select-tags-options" value="5" name="5">5</option>
+
+                    </select> */}
                 </div>
             </li>
         </div>
