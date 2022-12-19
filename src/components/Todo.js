@@ -70,11 +70,29 @@ const Todo = ({ task, todo }) => {
         }))
     }
 
-    
+    const startDateHandler = (event) => {
+        setTodos(todos.map((element) => {
+            if (element.id === todo.id) {
+                return {
+                ...element,
+                startDate: event.target.value
+                }
+            }
+            return element;
+        }))
+    }
 
-    
-
-
+    const endDateHandler = (event) => {
+        setTodos(todos.map((element) => {
+            if (element.id === todo.id) {
+                return {
+                ...element,
+                endDate: event.target.value
+                }
+            }
+            return element;
+        }))
+    }
 
     return (
         <div>
@@ -97,7 +115,7 @@ const Todo = ({ task, todo }) => {
                         <Dropdown.Menu>
                             <Dropdown.Item eventKey="0">No label</Dropdown.Item>
                             {labels.map((element) => (
-                            <Dropdown.Item eventKey={element.id}>
+                            <Dropdown.Item key={element.id} eventKey={element.id}>
                                 {element.name}
                             </Dropdown.Item>
                             ))}
@@ -109,21 +127,22 @@ const Todo = ({ task, todo }) => {
                                { todo.priority } 
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
-                            <Dropdown.Item eventKey="1">1</Dropdown.Item>
-                            <Dropdown.Item eventKey="2">2</Dropdown.Item>
-                            <Dropdown.Item eventKey="3">3</Dropdown.Item>
-                            <Dropdown.Item eventKey="4">4</Dropdown.Item>
-                            <Dropdown.Item eventKey="5">5</Dropdown.Item>
+                            <Dropdown.Item key="1" eventKey="1">1</Dropdown.Item>
+                            <Dropdown.Item key="2" eventKey="2">2</Dropdown.Item>
+                            <Dropdown.Item key="3" eventKey="3">3</Dropdown.Item>
+                            <Dropdown.Item key="4" eventKey="4">4</Dropdown.Item>
+                            <Dropdown.Item key="5" eventKey="5">5</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
-                    {/* <select onChange={priorityHandler} id="select-tags" className="select-tags" name="select-tags">
-                        <option className="select-tags-options" value="1" name="1">1</option>
-                        <option className="select-tags-options" value="2" name="2">2</option>
-                        <option className="select-tags-options" value="3" name="3">3</option>
-                        <option className="select-tags-options" value="4" name="4">4</option>
-                        <option className="select-tags-options" value="5" name="5">5</option>
-
-                    </select> */}
+                    <label className="filter">
+                        <span>Period</span>
+                     
+                            <input onChange={startDateHandler} type="date" id="range_start" className="input_date"/>
+                                <span> - </span>
+                            <input onChange={endDateHandler} type="date"id="range_end" className="input_date"/>
+                            
+                     
+                    </label>
                 </div>
             </li>
         </div>

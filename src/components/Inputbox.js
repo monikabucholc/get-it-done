@@ -6,8 +6,6 @@ import _uniqueId from 'lodash/uniqueId';
 
 const Inputbox = () => {
     const [todos, setTodos] = useContext(TodoContext);
-    
-    
     const [inputTask, setInputTask] = useState("");
     
     const inputTaskHandler = (event) => {
@@ -20,7 +18,8 @@ const Inputbox = () => {
             task: inputTask,
             completed: false,
             deleted: false,
-            date: "",
+            startDate: "",
+            endDate: "",
             priority: "1",
             label: "",
             color: "rgb(178, 183, 190)",

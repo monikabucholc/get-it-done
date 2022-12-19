@@ -3,28 +3,40 @@ import Todo from './Todo';
 import { TodoContext } from './TodoContext'
 import './Todolist.css'
 
-const Todolist = ({ status,  }) => {
+const Todolist = ({ status }) => {
     const [todos] = useContext(TodoContext);
     const [filteredTodos, setFilteredTodos] = useState([])
+   
 
-    const filterHandler = () => {
-        if (status.labelId === "0" && status.priority === false) {
-            setFilteredTodos(todos);
-        } else if (status.priority === true) {
-            setFilteredTodos(todos.sort((a,b) => (a.priority > b.priority) ? 1 : ((b.priority > a.priority) ? -1 : 0)))
-            console.log(filteredTodos)
-        } 
-        else {
-        setFilteredTodos(todos.filter((todo) => todo.labelId === status.labelId))
-        }
-    }
 
     useEffect(() => {
-        filterHandler();
-        }, [todos, status])
-
-    
-    
+        if (status.labelId !== "0") {
+            setFilteredTodos(todos.filter((todo) => todo.labelId === status.labelId))
+            setFilteredTodos(todos);
+        } else if (status.priority === true) {
+            let tempTodos = [...todos];
+            setFilteredTodos(tempTodos.sort((a,b) => (a.priority - b.priority) ))
+        } 
+        else if (status.startDate === true) {
+            let tempTodos = [...todos];
+            setFilteredTodos(tempTodos.sort((a,b) => {
+                let dateA = new Date (a.startDate);
+                let dateB = new Date (b.startDate);
+                return (dateA - dateB);
+            } ))
+        }
+        else if (status.endDate === true) {
+            let tempTodos = [...todos];
+            setFilteredTodos(tempTodos.sort((a,b) => {
+                let dateA = new Date (a.endDate);
+                let dateB = new Date (b.endDate);
+                return (dateA - dateB);
+            } ))
+        }
+        else {
+            setFilteredTodos(todos);
+        }
+    }, [todos, status])
         
     return (
         <ul className="todolist-container">

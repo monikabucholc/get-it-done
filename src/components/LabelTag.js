@@ -1,6 +1,7 @@
-import React, {useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { LabelContext } from './LabelContext';
 import { TodoContext } from './TodoContext';
+import _uniqueId from 'lodash/uniqueId';
 import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -57,7 +58,7 @@ const LabelTag = ({ label }) => {
                 ...todo,
                 label: "",
                 color: "rgb(178, 183, 190)",
-                labelId: 0,
+                labelId: "0",
                 } 
             }
             return todo;
@@ -66,12 +67,7 @@ const LabelTag = ({ label }) => {
         
     }
 
-    
-        
-    
-    // const selectLabelHandler = () => {
-    //     setSelectedLabel(label.name);
-    // }
+
 return (
     
         <div className="label-tag" >
@@ -88,7 +84,7 @@ return (
                 <Modal.Body>
                     <div>
                         {colors.map((color) => (
-                            <button onClick={changeColor} className="color-btn" style={{background: color}}/> 
+                            <button onClick={changeColor} key={_uniqueId()} className="color-btn" style={{background: color}}/> 
                         ))}
                     </div>
                 </Modal.Body>  

@@ -13,6 +13,7 @@ const Sidemenu = ({ status, setStatus }) => {
 
     const inputHandler = (event) => 
         setInputLabel(event.target.value);
+
     const inputLabelHandler = (event) => {
         event.preventDefault();
         setLabels([...labels, {
@@ -20,44 +21,59 @@ const Sidemenu = ({ status, setStatus }) => {
             color: "rgb(178, 183, 190)",
             id: _uniqueId()
         }]);
-        setInputLabel("");
-    }
+        setInputLabel("")
+    };
 
     const handleKeyDown = (event) => {
         if (event.keyCode === 13)
-        inputLabelHandler(inputLabel);
-    }
-
+        inputLabelHandler(inputLabel)
+    };
 
     const statusLabelHandler = (e) => {
         setStatus({
             labelId: e,
-            date: false,
+            startDate: false,
+            endDate: false,
             priority: false
         })
-    }
+    };
 
-    const statusPriorityHandler = (e) => {
+    const statusPriorityHandler = () => {
         setStatus({
             labelId: "0",
-            date: false,
+            startDate: false,
+            endDate: false,
             priority: true
         })
-    }
+    };
 
-    const resetStatusHandler = (e) => {
-        e.preventDefault();
+    const startDateHandler = () => {
         setStatus({
             labelId: "0",
-            date: false,
+            startDate: true,
+            endDate: false,
             priority: false
         });
-        document.getElementById("select-filter-tags").selectedIndex = 0;
-    }
+    };
 
-    // const filterTodoHandler = () => {
-    //     setFilteredTodos(filteredTodos.filter((todo) => todo.labelId === label.id))
-    // }
+    const endDateHandler = () => {
+        setStatus({
+            labelId: "0",
+            startDate: false,
+            endDate: true,
+            priority: false
+        });
+    };
+
+    const resetStatusHandler = () => {
+        setStatus({
+            labelId: "0",
+            startDate: false,
+            endDate: false,
+            priority: false
+        });
+    };
+
 
     return (
         <aside className="sidemenu">
@@ -68,7 +84,7 @@ const Sidemenu = ({ status, setStatus }) => {
                     key={label.id}
                     label={label}
                     />
-                ))}  
+                ))}
             </ul>
             <form method="POST" className="input-label-form">
                 <input 
@@ -85,12 +101,12 @@ const Sidemenu = ({ status, setStatus }) => {
             
                 <Dropdown onSelect={statusLabelHandler}>
                         <Dropdown.Toggle  variant="success" id="dropdown-basic">
-                           Label 
+                            Label
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
                         <Dropdown.Item eventKey="0">All</Dropdown.Item>
                             {labels.map((element) => (
-                            <Dropdown.Item eventKey={element.id}>
+                            <Dropdown.Item key={element.id} eventKey={element.id}>
                                 {element.name}
                             </Dropdown.Item>
                             ))}
@@ -98,6 +114,8 @@ const Sidemenu = ({ status, setStatus }) => {
                 </Dropdown>
                 <div className="secondary-category">Date</div>
                 <button onClick={statusPriorityHandler} className="secondary-category">Priority</button>
+                <button onClick={startDateHandler} className="secondary-category">Start date</button>
+                <button onClick={endDateHandler} className="secondary-category">End date</button>
                 <button onClick={resetStatusHandler} className="label-btn" type="reset">Reset Filters</button>
 
      

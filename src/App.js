@@ -16,9 +16,11 @@ function App() {
 
   const [status, setStatus] = useState({
     labelId: "0",
-    date: false,
+    startDate: false,
+    endDate: false,
     priority: false
     });
+    
   return (
     <div className="App">
       <LabelProvider>
