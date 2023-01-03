@@ -17,7 +17,6 @@ const Inputbox = () => {
         setTodos([...todos, {
             task: inputTask,
             completed: false,
-            deleted: false,
             startDate: "",
             endDate: "",
             priority: "1",

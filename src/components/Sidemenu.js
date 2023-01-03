@@ -32,48 +32,16 @@ const Sidemenu = ({ status, setStatus }) => {
     const statusLabelHandler = (e) => {
         setStatus({
             labelId: e,
-            startDate: false,
-            endDate: false,
-            priority: false
+            filterStatus: ""
         })
     };
 
-    const statusPriorityHandler = () => {
+    const statusHandler = (e) => {
         setStatus({
             labelId: "0",
-            startDate: false,
-            endDate: false,
-            priority: true
-        })
-    };
-
-    const startDateHandler = () => {
-        setStatus({
-            labelId: "0",
-            startDate: true,
-            endDate: false,
-            priority: false
+            filterStatus: e.target.value
         });
     };
-
-    const endDateHandler = () => {
-        setStatus({
-            labelId: "0",
-            startDate: false,
-            endDate: true,
-            priority: false
-        });
-    };
-
-    const resetStatusHandler = () => {
-        setStatus({
-            labelId: "0",
-            startDate: false,
-            endDate: false,
-            priority: false
-        });
-    };
-
 
     return (
         <aside className="sidemenu">
@@ -113,14 +81,14 @@ const Sidemenu = ({ status, setStatus }) => {
                         </Dropdown.Menu>
                 </Dropdown>
                 <div className="secondary-category">Date</div>
-                <button onClick={statusPriorityHandler} className="secondary-category">Priority</button>
-                <button onClick={startDateHandler} className="secondary-category">Start date</button>
-                <button onClick={endDateHandler} className="secondary-category">End date</button>
-                <button onClick={resetStatusHandler} className="label-btn" type="reset">Reset Filters</button>
-
-     
+                <button onClick={statusHandler} value="priority" className="secondary-category">Priority</button>
+                <button onClick={statusHandler} value="start-date" className="secondary-category">Start date</button>
+                <button onClick={statusHandler} value="end-date" className="secondary-category">End date</button>
+                <button onClick={statusHandler} value="" className="label-btn" type="reset">Reset Filters</button>
+                <button onClick={statusHandler} value="completed" className="label-btn" type="reset"> Completed</button>
+  
             <div className="main-category"><i className="fa-solid fa-check" />&nbsp; Completed</div>
-            <div className="main-category"><i className="fa-solid fa-trash" />&nbsp; Deleted</div>
+
         </aside>
     )
 }

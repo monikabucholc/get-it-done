@@ -5,9 +5,10 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import './Todo.css';
 
 
-const Todo = ({ task, todo }) => {
+const Todo = ({ task, todo, completedTodos, setCompletedTodos, deletedTodos, setDeletedTodos }) => {
     const [labels] = useContext(LabelContext);
     const [todos, setTodos] = useContext(TodoContext);
+
     const removeTaskHandler = () => {
         setTodos(todos.filter((element) => element.id !== todo.id)); 
     }
@@ -23,7 +24,6 @@ const Todo = ({ task, todo }) => {
             return element;
         }))
     }
-
 
     const taskLabelHandler = (event) => {
         if (event === "0") {
