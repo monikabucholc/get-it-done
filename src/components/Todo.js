@@ -1,12 +1,15 @@
 import React, { useContext } from 'react';
 import { LabelContext } from './LabelContext';
 import { TodoContext } from './TodoContext';
+import Dropdown from 'react-bootstrap/Dropdown';
+import Alertedit from './Alertedit'
 import './Todo.css';
 
 
 const Todo = ({ task, todo }) => {
     const [labels] = useContext(LabelContext);
     const [todos, setTodos] = useContext(TodoContext);
+
     const removeTaskHandler = () => {
         setTodos(todos.filter((element) => element.id !== todo.id)); 
     }
@@ -23,22 +26,76 @@ const Todo = ({ task, todo }) => {
         }))
     }
 
-   const taskLabelHandler = (event) => {
-    setTodos(todos.map((element) => {
-        if (element.id === todo.id) {
-            return {
-            ...element,
-            label: event.target.value,
-            color: event.target.options[event.target.selectedIndex].getAttribute('data-color'),
-            labelId: event.target.options[event.target.selectedIndex].getAttribute('data-labelId')
-            }
+    const taskLabelHandler = (event) => {
+        if (event === "0") {
+            setTodos(todos.map((element) => {
+                if (element.id === todo.id) {
+                    return {
+                        ...element,
+                            label: "",
+                            color: "rgb(178, 183, 190)",
+                            labelId: "0"
+                    }  
+                }
+            return element;
+            }))
+        } else { 
+            labels.map((l) => {
+                if (l.id === event) {
+                    setTodos(todos.map((element) => {
+                        if (element.id === todo.id) {
+                            return {
+                                ...element,
+                                label: l.name,
+                                color: l.color,
+                                labelId: l.id
+                            }  
+                        }
+                    return element;
+                    }))
+                }
+                return l 
+            })
         }
-        return element;
-    }))
-   }
-    
+    }
+        
+    const priorityHandler = (event) => {
+        setTodos(todos.map((element) => {
+            if (element.id === todo.id) {
+                return {
+                ...element,
+                priority: event
+                }
+            }
+            return element;
+        }))
+    }
 
-   
+    const startDateHandler = (event) => {
+        setTodos(todos.map((element) => {
+            if (element.id === todo.id) {
+                return {
+                ...element,
+                startDate: event.target.value
+                }
+            }
+            return element;
+        }))
+    }
+
+    const endDateHandler = (event) => {
+        setTodos(todos.map((element) => {
+            if (element.id === todo.id) {
+                return {
+                ...element,
+                endDate: event.target.value
+                }
+            }
+            return element;
+        }))
+    }
+
+
     return (
         <div>
             <li 
@@ -47,29 +104,48 @@ const Todo = ({ task, todo }) => {
                 <div className="task">
                     <div className="task-name">{task}</div>
                     <div className="btns">
-                        <button onClick={removeTaskHandler} className="done-btn" name="bin"><i className="fa-solid fa-trash" /></button>
-                        <button onClick={completeHandler} className="done-btn" name="completed"><i className="fa-solid fa-check" /></button>
+                        <Alertedit todo={todo} name="edit"/>
+                        <button onClick={removeTaskHandler} className="btn" name="bin"><i className="fa-solid fa-trash" /></button>
+                        <button onClick={completeHandler} className="btn" name="completed"><i className="fa-solid fa-check" /></button>
                     </div>
                 </div>
                 <div className="task-actions">
-                    <div className="tag-name-label"><i className="fa-solid fa-tag" /> Label</div>
-                    <select onChange={taskLabelHandler} id="select-tags" className="select-tags" name="select-tags">
-                        <option className="select-tags-options" value="" data-labelId="0" data-color="rgb(178, 183, 190)" name="none" selected></option>
-                        {labels.map((element) => (
-                            <option className="select-tags-options" 
-                                data-labelId={element.id}
-                                data-color={element.color}
-                                value={element.name}
-                                name={element.name}>
-                                    {element.name}
-                            </option>
-                        ))}
-                    </select>
+                    <Dropdown onSelect={taskLabelHandler}>
+                        <Dropdown.Toggle  className="label-dropdown" id="dropdown-basic">
+                            <i className="fa-solid fa-tag" style={{ color: `${todo.color}` }} />
+                                <span>{ todo.labelId !== "0" ? todo.label : "Choose label" }</span>
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                            <Dropdown.Item eventKey="0">No label</Dropdown.Item>
+                            {labels.map((element) => (
+                            <Dropdown.Item key={element.id} eventKey={element.id}>
+                                {element.name}
+                            </Dropdown.Item>
+                            ))}
+                        </Dropdown.Menu>
+                    </Dropdown>
+                    <Dropdown onSelect={priorityHandler}>
+                        <Dropdown.Toggle  className="priority-dropdown" id="dropdown-basic">
+                            <i className="fa-solid fa-star" />
+                               { todo.priority } 
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                            <Dropdown.Item key="1" eventKey="1">1</Dropdown.Item>
+                            <Dropdown.Item key="2" eventKey="2">2</Dropdown.Item>
+                            <Dropdown.Item key="3" eventKey="3">3</Dropdown.Item>
+                            <Dropdown.Item key="4" eventKey="4">4</Dropdown.Item>
+                            <Dropdown.Item key="5" eventKey="5">5</Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
+                    <div className="period">
+                        <span>Period</span>
+                        <input onChange={startDateHandler} type="date" id="range_start" className="input_date"/>
+                        <span> - </span>
+                        <input onChange={endDateHandler} type="date"id="range_end" className="input_date"/>
+                    </div>       
                 </div>
             </li>
         </div>
     )
 }
-    
-
 export default Todo;

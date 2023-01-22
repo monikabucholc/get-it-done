@@ -1,7 +1,9 @@
-import React, {useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { LabelContext } from './LabelContext';
 import { TodoContext } from './TodoContext';
+import _uniqueId from 'lodash/uniqueId';
 import Modal from 'react-bootstrap/Modal';
+import Alertedit from './Alertedit'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './LabelTag.css'
@@ -57,27 +59,25 @@ const LabelTag = ({ label }) => {
                 ...todo,
                 label: "",
                 color: "rgb(178, 183, 190)",
-                labelId: 0,
+                labelId: "0",
                 } 
             }
             return todo;
         }))
         setLabels(labels.filter((element) => element.id !== label.id)); 
+        
     }
-    // const selectLabelHandler = () => {
-    //     setSelectedLabel(label.name);
-    // }
 
-    
 
 return (
     
         <div className="label-tag" >
             <div className="label-tab-icon-text">
-                <i className="fa-solid fa-tag" style={{color: label.color}} />
+                <i className="fa-solid fa-tag" />
                 <li className="label-text">{label.name}</li>
             </div>
             <button onClick={handleShow} className="colors-btn" style={{color: label.color}}><i className="fa-solid fa-circle" /></button>
+            <Alertedit label={label} name="edit"/>
             <button onClick={removeLabelHandler} className="bin-btn" name="bin"><i className="fa-solid fa-trash" /></button>  
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
@@ -86,7 +86,7 @@ return (
                 <Modal.Body>
                     <div>
                         {colors.map((color) => (
-                            <button onClick={changeColor} className="color-btn" style={{background: color}}/> 
+                            <button onClick={changeColor} key={_uniqueId()} className="color-btn" style={{background: color}}/> 
                         ))}
                     </div>
                 </Modal.Body>  

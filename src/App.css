@@ -1,11 +1,44 @@
-.App {
+:root {
+  --main-text-color: #454D57;
+  --sub-text-color: #75818F;
+  --icon-color: rgb(178, 183, 190);
+  --background-color: #F8F9FB;
+  --white-color: #FFFFFF;
+  --input-border-color: #CDD0D3;
+
+}
+
+.app {
   display: flex;
   flex-direction: column;
   font-family: 'Inter';
 }
 
-.Content {
+.content {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+@media all and (max-width: 900px) {
+  .content {
+    grid-template-columns: 1fr
+  }
+}
+
+
+
+/* Global dropdowns components */
+#dropdown-basic {
   display: flex;
-  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #FFFFFF;
+  border: 1px solid #cdd0d3;
+  color: var(--main-text-color);
+  border-radius: 0.5rem;
+}
+
+#dropdown-basic::after {
+  margin-left: 1rem;
 }
 

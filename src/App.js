@@ -12,34 +12,33 @@ import { LabelProvider } from './components/LabelContext';
 import { TodoProvider } from './components/TodoContext'
 
 function App() {
-  
-  const [filteredTodos, setFilteredTodos] = useState([]);
-  const [selectedLabel, setSelectedLabel] = useState("");
-  const [taskLabel, setTaskLabel] = useState("");
-
-  // const [date, setDate] = useState("");
-  // const [priority, setPriority] = useState(1);
-  // const [filteredTodos, setFilteredTodos] = useState([]);
 
 
-
+  const [status, setStatus] = useState({
+    labelId: "0",
+    filterStatus: ""
+  });
+  const [showMenu, setShowMenu] = useState(false);
+    
   return (
-    <div className="App">
+    <div className="app">
       <LabelProvider>
         <TodoProvider>
-          <Navigation/>
-          <div className="Content">
+          <Navigation 
+            showMenu={showMenu}
+            setShowMenu={setShowMenu}
+          />
+          <div className="content">
             <Sidemenu 
-              selectedLabel={selectedLabel}
-              setSelectedLabel={setSelectedLabel}
+              status={status}
+              setStatus={setStatus}
+              showMenu={showMenu}
+              setShowMenu={setShowMenu}
             />
             <Todolist 
-              filteredTodos={filteredTodos}
-              setFilteredTodos={setFilteredTodos}
-              selectedLabel={selectedLabel}
-              setSelectedLabel={setSelectedLabel}
-              taskLabel={taskLabel}
-              setTaskLabel={setTaskLabel}/>
+              status={status}
+              setStatus={setStatus}
+            />
           </div>
         </TodoProvider>
       </LabelProvider>

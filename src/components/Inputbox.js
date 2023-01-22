@@ -17,11 +17,12 @@ const Inputbox = () => {
         setTodos([...todos, {
             task: inputTask,
             completed: false,
-            date: "",
-            priority: 1,
+            startDate: "",
+            endDate: "",
+            priority: "1",
             label: "",
             color: "rgb(178, 183, 190)",
-            labelId: 0,
+            labelId: "0",
             id: _uniqueId()
             }]);
         setInputTask("");
