@@ -4,7 +4,7 @@
     justify-content: space-between;
     align-content: center;
     align-items: center;
-    color: #454D57;
+    color: var(--main-text-color);
     list-style: none;
     gap: 8px;
     margin: 0px;
@@ -14,6 +14,7 @@
 .label-tab-icon-text {
     display: flex;
     width: 100%;
+    color: var(--icon-color);
     flex-direction: row;
     align-content: center;
     align-items:center;
@@ -24,6 +25,8 @@
 .label-text {
   display: flex;
   flex-wrap: wrap;
+  color: var(--main-text-color);
+  font-weight: 400;
   overflow-wrap: break-word;
   word-break: break-all; 
 }
@@ -33,7 +36,7 @@
     padding: 4px 4px;
     background: none;
     border: none;
-    color: #454D57;  
+    color: var(--main-text-color);
     cursor: pointer;
 }
 

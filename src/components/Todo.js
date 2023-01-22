@@ -2,10 +2,11 @@ import React, { useContext } from 'react';
 import { LabelContext } from './LabelContext';
 import { TodoContext } from './TodoContext';
 import Dropdown from 'react-bootstrap/Dropdown';
+import Alertedit from './Alertedit'
 import './Todo.css';
 
 
-const Todo = ({ task, todo, completedTodos, setCompletedTodos, deletedTodos, setDeletedTodos }) => {
+const Todo = ({ task, todo }) => {
     const [labels] = useContext(LabelContext);
     const [todos, setTodos] = useContext(TodoContext);
 
@@ -94,6 +95,7 @@ const Todo = ({ task, todo, completedTodos, setCompletedTodos, deletedTodos, set
         }))
     }
 
+
     return (
         <div>
             <li 
@@ -102,15 +104,16 @@ const Todo = ({ task, todo, completedTodos, setCompletedTodos, deletedTodos, set
                 <div className="task">
                     <div className="task-name">{task}</div>
                     <div className="btns">
-                        <button onClick={removeTaskHandler} className="done-btn" name="bin"><i className="fa-solid fa-trash" /></button>
-                        <button onClick={completeHandler} className="done-btn" name="completed"><i className="fa-solid fa-check" /></button>
+                        <Alertedit todo={todo} name="edit"/>
+                        <button onClick={removeTaskHandler} className="btn" name="bin"><i className="fa-solid fa-trash" /></button>
+                        <button onClick={completeHandler} className="btn" name="completed"><i className="fa-solid fa-check" /></button>
                     </div>
                 </div>
                 <div className="task-actions">
                     <Dropdown onSelect={taskLabelHandler}>
-                        <Dropdown.Toggle  variant="success" id="dropdown-basic">
+                        <Dropdown.Toggle  className="label-dropdown" id="dropdown-basic">
                             <i className="fa-solid fa-tag" style={{ color: `${todo.color}` }} />
-                                { todo.labelId !== "0" ? todo.label : "Choose label" }
+                                <span>{ todo.labelId !== "0" ? todo.label : "Choose label" }</span>
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
                             <Dropdown.Item eventKey="0">No label</Dropdown.Item>
@@ -122,7 +125,7 @@ const Todo = ({ task, todo, completedTodos, setCompletedTodos, deletedTodos, set
                         </Dropdown.Menu>
                     </Dropdown>
                     <Dropdown onSelect={priorityHandler}>
-                        <Dropdown.Toggle  variant="success" id="dropdown-basic">
+                        <Dropdown.Toggle  className="priority-dropdown" id="dropdown-basic">
                             <i className="fa-solid fa-star" />
                                { todo.priority } 
                         </Dropdown.Toggle>
@@ -134,20 +137,15 @@ const Todo = ({ task, todo, completedTodos, setCompletedTodos, deletedTodos, set
                             <Dropdown.Item key="5" eventKey="5">5</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
-                    <label className="filter">
+                    <div className="period">
                         <span>Period</span>
-                     
-                            <input onChange={startDateHandler} type="date" id="range_start" className="input_date"/>
-                                <span> - </span>
-                            <input onChange={endDateHandler} type="date"id="range_end" className="input_date"/>
-                            
-                     
-                    </label>
+                        <input onChange={startDateHandler} type="date" id="range_start" className="input_date"/>
+                        <span> - </span>
+                        <input onChange={endDateHandler} type="date"id="range_end" className="input_date"/>
+                    </div>       
                 </div>
             </li>
         </div>
     )
 }
-    
-
 export default Todo;

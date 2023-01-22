@@ -3,6 +3,7 @@ import { LabelContext } from './LabelContext';
 import { TodoContext } from './TodoContext';
 import _uniqueId from 'lodash/uniqueId';
 import Modal from 'react-bootstrap/Modal';
+import Alertedit from './Alertedit'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './LabelTag.css'
@@ -76,6 +77,7 @@ return (
                 <li className="label-text">{label.name}</li>
             </div>
             <button onClick={handleShow} className="colors-btn" style={{color: label.color}}><i className="fa-solid fa-circle" /></button>
+            <Alertedit label={label} name="edit"/>
             <button onClick={removeLabelHandler} className="bin-btn" name="bin"><i className="fa-solid fa-trash" /></button>  
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>

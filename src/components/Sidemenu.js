@@ -1,15 +1,25 @@
 import React, { useState, useContext } from 'react';
 import { LabelContext } from './LabelContext'
-//import { TodoContext } from './TodoContext';
 import LabelTag from './LabelTag';
 import Dropdown from 'react-bootstrap/Dropdown';
 import _uniqueId from 'lodash/uniqueId';
 import './Sidemenu.css'
 
 
-const Sidemenu = ({ status, setStatus }) => {
+const Sidemenu = ({ status, setStatus, showMenu, setShowMenu }) => {
     const [labels, setLabels] = useContext(LabelContext);
     const [inputLabel, setInputLabel] = useState("");
+    const [selectedLabel, setSelectedLabel] = useState("");
+    const selectedLabelHandler = (event) => {
+        event.preventDefault();
+        setSelectedLabel(event.target.innerHTML);
+    }
+    
+    const showMenuHandler = () => {
+        if (window.innerWidth <= 900) {
+        setShowMenu(!showMenu);
+        }
+    }
 
     const inputHandler = (event) => 
         setInputLabel(event.target.value);
@@ -30,64 +40,70 @@ const Sidemenu = ({ status, setStatus }) => {
     };
 
     const statusLabelHandler = (e) => {
+        showMenuHandler();
         setStatus({
             labelId: e,
             filterStatus: ""
         })
     };
 
+
     const statusHandler = (e) => {
+        showMenuHandler()
         setStatus({
             labelId: "0",
             filterStatus: e.target.value
         });
     };
 
+    
+    
     return (
-        <aside className="sidemenu">
+        <aside className="sidemenu" style={ showMenu ? {display: "flex"} : {}}>
             <div className="main-category"><i className="fa-solid fa-tag" />&nbsp; Labels</div>
-            <ul className="labels-list">
-                {labels.map((label) => (
-                    <LabelTag
-                    key={label.id}
-                    label={label}
+                <ul className="labels-list">
+                    {labels.map((label) => (
+                        <LabelTag
+                        key={label.id}
+                        label={label}
+                        />
+                    ))}
+                </ul>
+                <form method="POST" className="input-label-form">
+                    <input 
+                    onKeyDown={handleKeyDown} 
+                    value={inputLabel}
+                    onChange={inputHandler} 
+                    type="text" 
+                    className="input-label" 
+                    placeholder="Add Label"
                     />
-                ))}
-            </ul>
-            <form method="POST" className="input-label-form">
-                <input 
-                onKeyDown={handleKeyDown} 
-                value={inputLabel}
-                onChange={inputHandler} 
-                type="text" 
-                className="input-label" 
-                placeholder="Add Label"
-                />
-                <button onClick={inputLabelHandler} type="submit" className="label-btn" name="addlabel"><i className="fa-solid fa-plus" /></button>
-            </form>   
+                    <button onClick={inputLabelHandler} type="submit" className="label-btn" name="addlabel"><i className="fa-solid fa-plus" /></button>
+                </form>   
             <div className="main-category"><i className="fa-solid fa-filter" />&nbsp; Sort</div>
-            
                 <Dropdown onSelect={statusLabelHandler}>
-                        <Dropdown.Toggle  variant="success" id="dropdown-basic">
-                            Label
+                        <Dropdown.Toggle  id="dropdown-basic" className="dropdown-label-sidemenu">
+                            {status.labelId === "0" ? "Labels" : selectedLabel}
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
                         <Dropdown.Item eventKey="0">All</Dropdown.Item>
                             {labels.map((element) => (
-                            <Dropdown.Item key={element.id} eventKey={element.id}>
+                            <Dropdown.Item onClick={selectedLabelHandler} key={element.id} eventKey={element.id}>
                                 {element.name}
                             </Dropdown.Item>
                             ))}
                         </Dropdown.Menu>
                 </Dropdown>
-                <div className="secondary-category">Date</div>
-                <button onClick={statusHandler} value="priority" className="secondary-category">Priority</button>
-                <button onClick={statusHandler} value="start-date" className="secondary-category">Start date</button>
-                <button onClick={statusHandler} value="end-date" className="secondary-category">End date</button>
-                <button onClick={statusHandler} value="" className="label-btn" type="reset">Reset Filters</button>
-                <button onClick={statusHandler} value="completed" className="label-btn" type="reset"> Completed</button>
+                <button onClick={statusHandler} value="priority" className="sort-category"><i className="fa-solid fa-star" />&nbsp; Priority</button>
+                <button onClick={statusHandler} value="start-date" className="sort-category"><i className="fa-solid fa-hourglass-start" />&nbsp; Start date</button>
+                <button onClick={statusHandler} value="end-date" className="sort-category"><i className="fa-solid fa-hourglass-end" />&nbsp; End date</button>
+                <button onClick={statusHandler} value="" className="sort-category" type="reset"><i className="fa-solid fa-xmark" />&nbsp; Reset</button>
+            <div className="main-category"><i className="fa-solid fa-list-check" />&nbsp; Status</div>
+                <button onClick={statusHandler} value="" className="sort-category" type="reset"><i className="fa-solid fa-spinner" />&nbsp; To Do</button>
+                <button onClick={statusHandler} value="completed" className="sort-category" type="reset"><i className="fa-solid fa-check" />&nbsp; Completed</button>
+                
   
-            <div className="main-category"><i className="fa-solid fa-check" />&nbsp; Completed</div>
+            
 
         </aside>
     )

@@ -16,20 +16,24 @@ function App() {
 
   const [status, setStatus] = useState({
     labelId: "0",
-    startDate: false,
-    endDate: false,
-    priority: false
-    });
+    filterStatus: ""
+  });
+  const [showMenu, setShowMenu] = useState(false);
     
   return (
-    <div className="App">
+    <div className="app">
       <LabelProvider>
         <TodoProvider>
-          <Navigation/>
-          <div className="Content">
+          <Navigation 
+            showMenu={showMenu}
+            setShowMenu={setShowMenu}
+          />
+          <div className="content">
             <Sidemenu 
               status={status}
               setStatus={setStatus}
+              showMenu={showMenu}
+              setShowMenu={setShowMenu}
             />
             <Todolist 
               status={status}
