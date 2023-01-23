@@ -106,42 +106,48 @@ const Todo = ({ task, todo }) => {
                     <div className="btns">
                         <Alertedit todo={todo} name="edit"/>
                         <button onClick={removeTaskHandler} className="btn" name="bin"><i className="fa-solid fa-trash" /></button>
-                        <button onClick={completeHandler} className="btn" name="completed"><i className="fa-solid fa-check" /></button>
+                        <button onClick={completeHandler} className="btn" name="completed"><i className={ todo.completed ? "fa-solid fa-spinner" : "fa-solid fa-check" }/></button>
                     </div>
                 </div>
                 <div className="task-actions">
-                    <Dropdown onSelect={taskLabelHandler}>
-                        <Dropdown.Toggle  className="label-dropdown" id="dropdown-basic">
-                            <i className="fa-solid fa-tag" style={{ color: `${todo.color}` }} />
-                                <span>{ todo.labelId !== "0" ? todo.label : "Choose label" }</span>
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                            <Dropdown.Item eventKey="0">No label</Dropdown.Item>
-                            {labels.map((element) => (
-                            <Dropdown.Item key={element.id} eventKey={element.id}>
-                                {element.name}
-                            </Dropdown.Item>
-                            ))}
-                        </Dropdown.Menu>
-                    </Dropdown>
-                    <Dropdown onSelect={priorityHandler}>
-                        <Dropdown.Toggle  className="priority-dropdown" id="dropdown-basic">
-                            <i className="fa-solid fa-star" />
-                               { todo.priority } 
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                            <Dropdown.Item key="1" eventKey="1">1</Dropdown.Item>
-                            <Dropdown.Item key="2" eventKey="2">2</Dropdown.Item>
-                            <Dropdown.Item key="3" eventKey="3">3</Dropdown.Item>
-                            <Dropdown.Item key="4" eventKey="4">4</Dropdown.Item>
-                            <Dropdown.Item key="5" eventKey="5">5</Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>
+                    <div className="label">
+                        <span>Label:</span>
+                        <Dropdown onSelect={taskLabelHandler}>
+                            <Dropdown.Toggle  className="label-dropdown" id="dropdown-basic">
+                                <i className="fa-solid fa-tag" style={{ color: `${todo.color}` }} />
+                                    <span>{ todo.labelId !== "0" ? todo.label : "Choose label" }</span>
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                <Dropdown.Item eventKey="0">No label</Dropdown.Item>
+                                {labels.map((element) => (
+                                <Dropdown.Item key={element.id} eventKey={element.id}>
+                                    {element.name}
+                                </Dropdown.Item>
+                                ))}
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </div>
+                    <div className="priority">
+                        <span>Priority:</span>
+                        <Dropdown onSelect={priorityHandler}>
+                            <Dropdown.Toggle  className="priority-dropdown" id="dropdown-basic">
+                                <i className="fa-solid fa-star" />
+                                { todo.priority } 
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                <Dropdown.Item key="1" eventKey="1">1</Dropdown.Item>
+                                <Dropdown.Item key="2" eventKey="2">2</Dropdown.Item>
+                                <Dropdown.Item key="3" eventKey="3">3</Dropdown.Item>
+                                <Dropdown.Item key="4" eventKey="4">4</Dropdown.Item>
+                                <Dropdown.Item key="5" eventKey="5">5</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </div>
                     <div className="period">
-                        <span>Period</span>
-                        <input onChange={startDateHandler} type="date" id="range_start" className="input_date"/>
+                        <span>Period:</span>
+                        <input onChange={startDateHandler} value={todo.startDate} type="date" id="range_start" className="input_date"/>
                         <span> - </span>
-                        <input onChange={endDateHandler} type="date"id="range_end" className="input_date"/>
+                        <input onChange={endDateHandler} value={todo.endDate} type="date" id="range_end" className="input_date"/>
                     </div>       
                 </div>
             </li>

@@ -10,7 +10,7 @@
     display: flex;
     padding: 0.5rem 1rem;
     background: var(--background-color);
-    border: 1px solid var(--input-border-color);
+    border: 1px solid var(--main-text-color);
     color: var(--main-text-color);
     box-shadow: 2px 2px 4px #27272726; 
     border-radius: 0.5rem;

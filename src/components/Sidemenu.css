@@ -33,6 +33,11 @@
     padding: 2rem 0 0.5rem 0;
 }
 
+.main-category i {
+    width: 1rem;
+    text-align: center
+}
+
 .sort-category {
     padding: 0.5rem 0;
     border: none;
@@ -69,7 +74,7 @@
 
 .input-label {
     width: 100%;
-    padding: 0.25rem 1rem;
+    padding: 0.5rem 1rem;
     background-color: var(--white-color);
     border: 1px solid var(--input-border-color);
     color: var(--main-text-color);
