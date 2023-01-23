@@ -42,10 +42,10 @@
 
 @media all and (max-width: 688px) {
     .navbar {height: 166px}
-    .logo {margin: auto; justify-content: center;}
+    .logo {margin: auto; justify-content: center}
 }
 
 @media all and (max-width: 900px) {
-    .showMenu {display: flex; margin-right: 0;}
+    .showMenu {display: flex; order: -1}
     .navbar {padding: 16px 2rem !important;}
 }

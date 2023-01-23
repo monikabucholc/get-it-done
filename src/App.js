@@ -13,11 +13,11 @@ import { TodoProvider } from './components/TodoContext'
 
 function App() {
 
-
   const [status, setStatus] = useState({
     labelId: "0",
     filterStatus: ""
   });
+
   const [showMenu, setShowMenu] = useState(false);
     
   return (

@@ -76,11 +76,11 @@ const Sidemenu = ({ status, setStatus, showMenu, setShowMenu }) => {
                     onChange={inputHandler} 
                     type="text" 
                     className="input-label" 
-                    placeholder="Add Label"
+                    placeholder="Add a Label"
                     />
                     <button onClick={inputLabelHandler} type="submit" className="label-btn" name="addlabel"><i className="fa-solid fa-plus" /></button>
                 </form>   
-            <div className="main-category"><i className="fa-solid fa-filter" />&nbsp; Sort</div>
+            <div className="main-category"><i className="fa-solid fa-filter" />&nbsp; Filter To Do</div>
                 <Dropdown onSelect={statusLabelHandler}>
                         <Dropdown.Toggle  id="dropdown-basic" className="dropdown-label-sidemenu">
                             {status.labelId === "0" ? "Labels" : selectedLabel}
@@ -94,6 +94,7 @@ const Sidemenu = ({ status, setStatus, showMenu, setShowMenu }) => {
                             ))}
                         </Dropdown.Menu>
                 </Dropdown>
+            <div className="main-category"><i className="fa-solid fa-sort" />&nbsp; Sort To Do</div>
                 <button onClick={statusHandler} value="priority" className="sort-category"><i className="fa-solid fa-star" />&nbsp; Priority</button>
                 <button onClick={statusHandler} value="start-date" className="sort-category"><i className="fa-solid fa-hourglass-start" />&nbsp; Start date</button>
                 <button onClick={statusHandler} value="end-date" className="sort-category"><i className="fa-solid fa-hourglass-end" />&nbsp; End date</button>

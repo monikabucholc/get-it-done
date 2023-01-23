@@ -8,5 +8,5 @@
 }
 
 @media all and (max-width: 900px) {
-    .todolist-container {margin: 96px 40px 0px 40px;}
+    .todolist-container {margin: 16px 1rem 1rem}
 }

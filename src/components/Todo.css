@@ -1,7 +1,8 @@
 .todo-item {
     display: flex;
     flex-direction: column;
-    padding: 0.5rem 1rem;
+    width: 100%;
+    padding: 0.5rem 1rem 1rem 1rem;
     margin: 0.5rem 0;
     color: var(--main-text-color);
     background: var(--white-color);
@@ -19,6 +20,8 @@
 .task-name {
     display: flex;
     width: 100%;
+    font-size: 1.2rem;
+    font-weight: 500;
     padding: 1rem 1rem 1rem 0;
     flex-direction: row; 
     word-break: break-word;
@@ -40,6 +43,10 @@
     color: var(--main-text-color);
 }
 
+.btn:hover {
+    background: var(--input-border-color)
+}
+
 .task-actions {
     display: flex;
     flex-direction: row;
@@ -48,8 +55,12 @@
     flex-wrap: wrap;
 }
 
+
+
 .label-dropdown {
     width: 200px;
+    border: none !important;
+    background: var(--background-color) !important;
 }
 
 
@@ -59,20 +70,49 @@
     overflow: hidden;
 }
 
-.priority-dropdown {
-    width: 6rem;
+.priority, .label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     gap: 0.5rem;
+}
+
+.priority-dropdown {
+    border: none !important;
+    background: var(--background-color) !important;
+    width: 5rem;
 }
 
 .period {
     display: flex;
     gap: 0.5rem;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .input_date {
-    border: 1px solid var(--input-border-color);
+    border: none;
+    background: var(--background-color);
     border-radius: 0.5rem;
     color: var(--main-text-color);
     padding: 0.5rem;
+    width: fit-content;
+}
+
+@media all and (max-width: 900px) {
+    .btns {
+        gap: 0.5rem;
+    }
+    .task-actions {
+        flex-direction: column; 
+        align-items: flex-start;
+        font-size: 0.8rem;
+        gap: 0.5rem;
+    }
+    .label-dropdown {
+        font-size: 0.8rem;
+    }
+    .priority-dropdown {
+        font-size: 0.8rem;
+    }
 }
