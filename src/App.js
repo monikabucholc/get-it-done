@@ -3,13 +3,13 @@ import React, { useState } from 'react';
 import './App.css'
 
 //Components
-import Navigation from './components/Navigation';
-import Sidemenu from './components/Sidemenu';
-import Todolist from './components/Todolist';
+import Navigation from './components/Navigation/Navigation';
+import Sidemenu from './components/Sidemenu/Sidemenu';
+import Todolist from './components/Todolist/Todolist';
 
 //Contexts
-import { LabelProvider } from './components/LabelContext';
-import { TodoProvider } from './components/TodoContext'
+import { LabelProvider } from './components/context/LabelContext';
+import { TodoProvider } from './components/context/TodoContext'
 
 function App() {
 

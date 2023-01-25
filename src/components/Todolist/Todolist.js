@@ -1,12 +1,13 @@
 import React, {useContext, useEffect, useState} from 'react';
-import Todo from './Todo';
-import { TodoContext } from './TodoContext'
+import Todo from '../Todo/Todo';
+import { TodoContext } from '../context/TodoContext'
 import './Todolist.css'
 
 const Todolist = ({ status }) => {
     const [todos, setTodos] = useContext(TodoContext);
     const [filteredTodos, setFilteredTodos] = useState([]);
-
+    
+    //Get from Local Storage
     useEffect(() => {
         if (localStorage.getItem("todos") === null) {
             localStorage.setItem("todos", JSON.stringify([]));
@@ -14,19 +15,21 @@ const Todolist = ({ status }) => {
             setTodos(JSON.parse(localStorage.getItem("todos")));
         }
     }, []);
-   
+    
+    //Save to Local Storage
     useEffect(() => {
-        console.log(todos)
-        const futureDate = new Date(8640000000000000);
-        //Save to Local Storage
         if (todos.length > 0 ) {
             localStorage.setItem("todos", JSON.stringify(todos));
         } 
-        //Sort and filter
+    },[todos]);
+    
+    //Sort and filter
+    useEffect(() => {
+        const futureDate = new Date(8640000000000000);
         //Filter by label
         if (status.labelId !== "0") {
             setFilteredTodos(todos.filter((todo) => !todo.completed && todo.labelId === status.labelId))
-        } 
+        }
         //Sort by Priority
         else if (status.filterStatus === "priority") {
             let tempTodos = [...todos.filter((todo) => !todo.completed)];

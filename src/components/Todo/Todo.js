@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import { LabelContext } from './LabelContext';
-import { TodoContext } from './TodoContext';
+import { LabelContext } from '../context/LabelContext';
+import { TodoContext } from '../context/TodoContext';
 import Dropdown from 'react-bootstrap/Dropdown';
-import Alertedit from './Alertedit'
+import Alertedit from '../AlertEdit/Alertedit'
 import './Todo.css';
 
 
@@ -12,9 +12,10 @@ const Todo = ({ task, todo }) => {
 
     const removeTaskHandler = () => {
         setTodos(todos.filter((element) => element.id !== todo.id)); 
+        //Remove last item from Local Storage
         if (todos.length === 1) {
             localStorage.setItem("todos", JSON.stringify([]))
-        }
+        };
     }
 
     const completeHandler = () => {
@@ -23,7 +24,7 @@ const Todo = ({ task, todo }) => {
                 return {
                 ...element,
                 completed: !element.completed
-                }
+                };
             }
             return element;
         }))
@@ -36,7 +37,7 @@ const Todo = ({ task, todo }) => {
                     return {
                         ...element,
                             label: "",
-                            color: "rgb(178, 183, 190)",
+                            color: "rgb(243, 207, 19)",
                             labelId: "0"
                     }  
                 }
@@ -57,7 +58,7 @@ const Todo = ({ task, todo }) => {
                     return element;
                     }))
                 }
-                return l 
+                return l;
             })
         }
     }
@@ -103,7 +104,7 @@ const Todo = ({ task, todo }) => {
         <div>
             <li 
             className={`todo-item ${todo.completed ? "completed" : ""}`} 
-            style= {{ border: `6px solid ${todo.color}` }}>
+            style= {{ border: `4px solid ${todo.color}` }}>
                 <div className="task">
                     <div className="task-name">{task}</div>
                     <div className="btns">
