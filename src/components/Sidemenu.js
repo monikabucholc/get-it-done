@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { LabelContext } from './LabelContext'
 import LabelTag from './LabelTag';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -56,7 +56,20 @@ const Sidemenu = ({ status, setStatus, showMenu, setShowMenu }) => {
         });
     };
 
-    
+    useEffect(() => {
+        if (localStorage.getItem("labels") === null) {
+            localStorage.setItem("labels", JSON.stringify([]));
+        } else {
+            setLabels(JSON.parse(localStorage.getItem("labels")));
+        }
+    }, []);
+   
+    useEffect(() => {
+        if (labels.length > 0) {
+            localStorage.setItem("labels", JSON.stringify(labels));
+        }
+    }, [labels]);
+   
     
     return (
         <aside className="sidemenu" style={ showMenu ? {display: "flex"} : {}}>

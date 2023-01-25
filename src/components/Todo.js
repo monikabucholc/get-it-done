@@ -12,6 +12,9 @@ const Todo = ({ task, todo }) => {
 
     const removeTaskHandler = () => {
         setTodos(todos.filter((element) => element.id !== todo.id)); 
+        if (todos.length === 1) {
+            localStorage.setItem("todos", JSON.stringify([]))
+        }
     }
 
     const completeHandler = () => {
