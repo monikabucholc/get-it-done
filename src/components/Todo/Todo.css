@@ -27,6 +27,7 @@
     word-break: break-word;
 }
 
+
 .completed > .task > .task-name {
     text-decoration: line-through;
 }
@@ -51,10 +52,11 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 1rem;
+    column-gap: 3rem;
     flex-wrap: wrap;
+    color: var(--sub-text-color);
+    font-size: 0.9rem;
 }
-
 
 
 .label-dropdown {
@@ -104,9 +106,8 @@
         gap: 0.5rem;
     }
     .task-actions {
-        flex-direction: column; 
+     
         align-items: flex-start;
-        font-size: 0.8rem;
         gap: 0.5rem;
     }
     .label-dropdown {

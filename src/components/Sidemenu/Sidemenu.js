@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { LabelContext } from './LabelContext'
-import LabelTag from './LabelTag';
+import { LabelContext } from '../context/LabelContext'
+import LabelTag from '../LabelTag/LabelTag';
 import Dropdown from 'react-bootstrap/Dropdown';
-import _uniqueId from 'lodash/uniqueId';
+import uniqid from 'uniqid';
 import './Sidemenu.css'
 
 
@@ -28,8 +28,8 @@ const Sidemenu = ({ status, setStatus, showMenu, setShowMenu }) => {
         event.preventDefault();
         setLabels([...labels, {
             name: inputLabel,
-            color: "rgb(178, 183, 190)",
-            id: _uniqueId()
+            color: "rgb(243, 207, 19)",
+            id: uniqid()
         }]);
         setInputLabel("")
     };
@@ -93,21 +93,21 @@ const Sidemenu = ({ status, setStatus, showMenu, setShowMenu }) => {
                     />
                     <button onClick={inputLabelHandler} type="submit" className="label-btn" name="addlabel"><i className="fa-solid fa-plus" /></button>
                 </form>   
-            <div className="main-category"><i className="fa-solid fa-filter" />&nbsp; Filter To Do</div>
+            <div className="main-category"><i className="fa-solid fa-filter" />&nbsp; Sort To Do</div>
                 <Dropdown onSelect={statusLabelHandler}>
                         <Dropdown.Toggle  id="dropdown-basic" className="dropdown-label-sidemenu">
                             {status.labelId === "0" ? "Labels" : selectedLabel}
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
-                        <Dropdown.Item eventKey="0">All</Dropdown.Item>
+                        <Dropdown.Item eventKey="0">All Labels</Dropdown.Item>
                             {labels.map((element) => (
                             <Dropdown.Item onClick={selectedLabelHandler} key={element.id} eventKey={element.id}>
                                 {element.name}
                             </Dropdown.Item>
                             ))}
+                        
                         </Dropdown.Menu>
                 </Dropdown>
-            <div className="main-category"><i className="fa-solid fa-sort" />&nbsp; Sort To Do</div>
                 <button onClick={statusHandler} value="priority" className="sort-category"><i className="fa-solid fa-star" />&nbsp; Priority</button>
                 <button onClick={statusHandler} value="start-date" className="sort-category"><i className="fa-solid fa-hourglass-start" />&nbsp; Start date</button>
                 <button onClick={statusHandler} value="end-date" className="sort-category"><i className="fa-solid fa-hourglass-end" />&nbsp; End date</button>

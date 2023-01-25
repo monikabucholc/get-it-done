@@ -1,8 +1,7 @@
 import React, { useState, useContext } from 'react';
-import { TodoContext } from './TodoContext';
-
+import { TodoContext } from '../context/TodoContext';
 import './Inputbox.css';
-import _uniqueId from 'lodash/uniqueId';
+import uniqid from 'uniqid';
 
 const Inputbox = () => {
     const [todos, setTodos] = useContext(TodoContext);
@@ -11,7 +10,7 @@ const Inputbox = () => {
     const inputTaskHandler = (event) => {
         setInputTask(event.target.value);
     }
-
+    
     const addHandler = (event) => {
         event.preventDefault();
         setTodos([...todos, {
@@ -21,9 +20,9 @@ const Inputbox = () => {
             endDate: "",
             priority: "1",
             label: "",
-            color: "rgb(178, 183, 190)",
+            color: "rgb(243, 207, 19)",
             labelId: "0",
-            id: _uniqueId()
+            id: uniqid()
             }]);
         setInputTask("");
     }
