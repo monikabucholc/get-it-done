@@ -65,6 +65,9 @@ const LabelTag = ({ label }) => {
             return todo;
         }))
         setLabels(labels.filter((element) => element.id !== label.id)); 
+        if (labels.length === 1) {
+            localStorage.setItem("labels", JSON.stringify(labels))
+        }
         
     }
 
