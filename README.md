@@ -1,11 +1,13 @@
 # Get It Done! 
 
-###Created with React.
+##Created with React.
+
+Check it: <a href='https://monikabucholc.github.io/get-it-done/'><img src='https://github.com/monikabucholc/get-it-done/blob/main/src/images/Getitdone.png' height="49" width="367"/></a>
 
 Get It Done! allows you to:
 - add new tasks to the list
-- set tasks priority
-- set tasks start & end date
+- set tasks' priority
+- set tasks' start & end date
 - add custom named labels
 - change colors of the labels
 - mark tasks as already done
