@@ -2,27 +2,29 @@
   --main-text-color: #454D57;
   --sub-text-color: #75818F;
   --icon-color: rgb(178, 183, 190);
-  --background-color: #F8F9FB;
+  --background-color: #eff0f3;
   --white-color: #FFFFFF;
   --input-border-color: #CDD0D3;
-  --input-background-color: #d3d8e2; 
+  --input-background-color: #F8F9FB; 
 
 }
 
 .app {
   display: flex;
   flex-direction: column;
-  font-family: 'Inter';
+  font-family: 'Inter', sans-serif;
 }
 
 .content {
   display: grid;
   grid-template-columns: 1fr 3fr;
+  background-color: var(--background-color);
 }
 
 @media all and (max-width: 900px) {
   .content {
-    grid-template-columns: 1fr
+    grid-template-columns: 1fr;
+    min-height: calc(100vh - 166px)
   }
 }
 

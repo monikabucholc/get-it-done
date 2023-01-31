@@ -9,15 +9,15 @@
 .input {
     display: flex;
     padding: 0.5rem 1rem;
-    background: var(--background-color);
+    background: var(--input-background-color);
     border: 1px solid var(--main-text-color);
     color: var(--main-text-color);
-    box-shadow: 2px 2px 4px #27272726; 
+    box-shadow: 2px 2px 4px #27272717; 
     border-radius: 0.5rem;
     font-size: 1rem;
     line-height: 1.5rem;
     width: 30vw;
-    min-width: 256px;
+    min-width: 240px;
 }
 
 ::placeholder {

@@ -4,7 +4,8 @@
     padding: 0px;
     justify-content: flex-start;
     align-content: flex-start;
-    margin: 16px 4rem 4rem;  
+    margin: 16px 4rem 4rem;
+    
 }
 
 @media all and (max-width: 900px) {

@@ -14,7 +14,7 @@ const Todo = ({ task, todo }) => {
         setTodos(todos.filter((element) => element.id !== todo.id)); 
         //Remove last item from Local Storage
         if (todos.length === 1) {
-            localStorage.setItem("todos", JSON.stringify([]))
+            sessionStorage.setItem("todos", JSON.stringify([]))
         };
     }
 
@@ -104,7 +104,7 @@ const Todo = ({ task, todo }) => {
         <div>
             <li 
             className={`todo-item ${todo.completed ? "completed" : ""}`} 
-            style= {{ border: `4px solid ${todo.color}` }}>
+            style= {{ borderLeft: `24px solid ${todo.color}` }}>
                 <div className="task">
                     <div className="task-name">{task}</div>
                     <div className="btns">

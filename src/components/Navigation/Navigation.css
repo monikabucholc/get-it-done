@@ -9,7 +9,7 @@
     padding: 1rem 4rem !important;
     background-color: var(--white-color);
     border-bottom: 1px solid var(--main-text-color);
-    box-shadow: 0px 4px 4px 0px #00000026;  
+    box-shadow: 0px 4px 4px 0px #74727226;  
 }
 
 .logo {
@@ -37,10 +37,10 @@
     align-items: center;
     justify-content: center;
     color: var(--main-text-color);
-    margin-right: 2rem;
+    margin-right: 0.5rem;
 }
 
-@media all and (max-width: 688px) {
+@media all and (max-width: 680px) {
     .navbar {height: 166px}
     .logo {margin: auto; justify-content: center}
 }

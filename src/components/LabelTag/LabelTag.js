@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { LabelContext } from '../../context/LabelContext';
 import { TodoContext } from '../../context/TodoContext';
-import _uniqueId from 'lodash/uniqueId';
+import uniqid from 'uniqid';
 import Modal from 'react-bootstrap/Modal';
 import Alertedit from '../AlertEdit/Alertedit'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -67,7 +67,7 @@ const LabelTag = ({ label }) => {
         setLabels(labels.filter((element) => element.id !== label.id)); 
         //Remove last item from Local Storage
         if (labels.length === 1) {
-            localStorage.setItem("labels", JSON.stringify([]))
+            sessionStorage.setItem("labels", JSON.stringify([]))
         } 
     }
 
@@ -88,7 +88,7 @@ return (
             <Modal.Body>
                 <div>
                     {colors.map((color) => (
-                        <button onClick={changeColor} key={_uniqueId()} className="color-btn" style={{background: color}}/> 
+                        <button onClick={changeColor} key={uniqid()} className="color-btn" style={{background: color}}/> 
                     ))}
                 </div>
             </Modal.Body>  
