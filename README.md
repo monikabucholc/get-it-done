@@ -2,7 +2,7 @@
 
 Created with React.
 
-## Get It Done! allows you to:
+Get It Done! allows you to:
 - add new tasks to the list
 - set tasks' priority
 - set tasks' start & end date
