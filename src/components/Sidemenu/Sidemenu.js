@@ -57,16 +57,16 @@ const Sidemenu = ({ status, setStatus, showMenu, setShowMenu }) => {
     };
 
     useEffect(() => {
-        if (localStorage.getItem("labels") === null) {
-            localStorage.setItem("labels", JSON.stringify([]));
+        if (sessionStorage.getItem("labels") === null) {
+            sessionStorage.setItem("labels", JSON.stringify([]));
         } else {
-            setLabels(JSON.parse(localStorage.getItem("labels")));
+            setLabels(JSON.parse(sessionStorage.getItem("labels")));
         }
     }, []);
    
     useEffect(() => {
         if (labels.length > 0) {
-            localStorage.setItem("labels", JSON.stringify(labels));
+            sessionStorage.setItem("labels", JSON.stringify(labels));
         }
     }, [labels]);
    

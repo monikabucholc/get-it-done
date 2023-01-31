@@ -9,17 +9,17 @@ const Todolist = ({ status }) => {
     
     //Get from Local Storage
     useEffect(() => {
-        if (localStorage.getItem("todos") === null) {
-            localStorage.setItem("todos", JSON.stringify([]));
+        if (sessionStorage.getItem("todos") === null) {
+            sessionStorage.setItem("todos", JSON.stringify([]));
         } else {
-            setTodos(JSON.parse(localStorage.getItem("todos")));
+            setTodos(JSON.parse(sessionStorage.getItem("todos")));
         }
     }, []);
     
     //Save to Local Storage
     useEffect(() => {
         if (todos.length > 0 ) {
-            localStorage.setItem("todos", JSON.stringify(todos));
+            sessionStorage.setItem("todos", JSON.stringify(todos));
         } 
     },[todos]);
     
