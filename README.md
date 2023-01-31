@@ -1,10 +1,8 @@
-# Get It Done! 
+<a href='https://monikabucholc.github.io/get-it-done/'><img src='https://github.com/monikabucholc/get-it-done/blob/main/src/images/Getitdone.svg' height="49" width="367"/></a>
 
-##Created with React.
+Created with React.
 
-Check it: <a href='https://monikabucholc.github.io/get-it-done/'><img src='https://github.com/monikabucholc/get-it-done/blob/main/src/images/Getitdone.png' height="49" width="367"/></a>
-
-Get It Done! allows you to:
+# Get It Done! allows you to:
 - add new tasks to the list
 - set tasks' priority
 - set tasks' start & end date
