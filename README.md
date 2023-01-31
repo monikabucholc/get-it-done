@@ -10,6 +10,4 @@ Get It Done! allows you to:
 - change colors of the labels
 - mark tasks as already done
 - sort tasks by all above
-- delete tasks
-
-For presentation purposes tasks are saved in your SessionStorage.
+- delete tasks.
