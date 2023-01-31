@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { TodoContext } from '../context/TodoContext';
+import { TodoContext } from '../../context/TodoContext';
 import './Inputbox.css';
 import uniqid from 'uniqid';
 

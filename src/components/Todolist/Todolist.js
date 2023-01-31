@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import Todo from '../Todo/Todo';
-import { TodoContext } from '../context/TodoContext'
+import { TodoContext } from '../../context/TodoContext'
 import './Todolist.css'
 
 const Todolist = ({ status }) => {

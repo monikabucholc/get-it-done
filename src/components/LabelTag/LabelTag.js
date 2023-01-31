@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
-import { LabelContext } from '../context/LabelContext';
-import { TodoContext } from '../context/TodoContext';
+import { LabelContext } from '../../context/LabelContext';
+import { TodoContext } from '../../context/TodoContext';
 import _uniqueId from 'lodash/uniqueId';
 import Modal from 'react-bootstrap/Modal';
 import Alertedit from '../AlertEdit/Alertedit'

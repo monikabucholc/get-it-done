@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { LabelContext } from '../context/LabelContext';
-import { TodoContext } from '../context/TodoContext';
+import { LabelContext } from '../../context/LabelContext';
+import { TodoContext } from '../../context/TodoContext';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Alertedit from '../AlertEdit/Alertedit'
 import './Todo.css';

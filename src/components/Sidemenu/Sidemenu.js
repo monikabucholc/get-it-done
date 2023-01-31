@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { LabelContext } from '../context/LabelContext'
+import { LabelContext } from '../../context/LabelContext'
 import LabelTag from '../LabelTag/LabelTag';
 import Dropdown from 'react-bootstrap/Dropdown';
 import uniqid from 'uniqid';

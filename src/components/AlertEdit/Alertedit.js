@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
-import { LabelContext } from '../context/LabelContext';
-import { TodoContext } from '../context/TodoContext';
+import { LabelContext } from '../../context/LabelContext';
+import { TodoContext } from '../../context/TodoContext';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import './Alertedit.css'

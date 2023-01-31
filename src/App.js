@@ -8,8 +8,8 @@ import Sidemenu from './components/Sidemenu/Sidemenu';
 import Todolist from './components/Todolist/Todolist';
 
 //Contexts
-import { LabelProvider } from './components/context/LabelContext';
-import { TodoProvider } from './components/context/TodoContext'
+import { LabelProvider } from './context/LabelContext';
+import { TodoProvider } from './context/TodoContext'
 
 function App() {
 
