@@ -1,4 +1,4 @@
-<a href='https://monikabucholc.github.io/get-it-done/'><img src='https://github.com/monikabucholc/get-it-done/blob/main/src/images/Getitdone.svg' height="49" width="367"/></a>
+<a href='https://monikabucholc.github.io/get-it-done/'><img src='https://github.com/monikabucholc/get-it-done/blob/main/src/images/Getitdone.png' height="16"/></a>
 
 Created with React.
 
