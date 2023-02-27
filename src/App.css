@@ -6,7 +6,6 @@
   --white-color: #FFFFFF;
   --input-border-color: #CDD0D3;
   --input-background-color: #F8F9FB; 
-
 }
 
 .app {
@@ -27,8 +26,6 @@
     min-height: calc(100vh - 166px)
   }
 }
-
-
 
 /* Global dropdowns components */
 #dropdown-basic {

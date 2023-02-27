@@ -36,6 +36,7 @@
 .btns {
     display: flex;
     flex-direction: row;
+    gap: 0.5rem
 }
 
 .btn {
@@ -104,9 +105,6 @@
 }
 
 @media all and (max-width: 900px) {
-    .btns {
-        gap: 0.5rem;
-    }
     .task-actions {
         align-items: flex-start;
     }

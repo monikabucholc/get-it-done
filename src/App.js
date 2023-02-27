@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
-
 import './App.css'
-
 //Components
 import Navigation from './components/Navigation/Navigation';
 import Sidemenu from './components/Sidemenu/Sidemenu';
 import Todolist from './components/Todolist/Todolist';
-
 //Contexts
 import { LabelProvider } from './context/LabelContext';
 import { TodoProvider } from './context/TodoContext'
@@ -20,7 +17,6 @@ function App() {
 
   const [showMenu, setShowMenu] = useState(false);
     
-
   return (
     <div className="app">
       <LabelProvider>
