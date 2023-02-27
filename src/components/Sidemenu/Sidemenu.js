@@ -61,6 +61,7 @@ const Sidemenu = ({ status, setStatus, showMenu, setShowMenu }) => {
         } else {
             setLabels(JSON.parse(sessionStorage.getItem("labels")));
         }
+        // eslint-disable-next-line
     }, []);
    
     useEffect(() => {
