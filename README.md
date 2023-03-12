@@ -5,7 +5,7 @@
 ## About the Project ##
 Handle your to-do list with **Get It Done!** Add, delete, and modify tasks with ease. Set them custom, coloured labels for better identification. Pick the dates and priorities to sort and prioritize the tasks. Our app with its simple and intuitive interface will help you stay productive and manage your time better!
 
-## Technologies & Tools ##
+## Technologies ##
 
 * **React** 18.2.0
 
