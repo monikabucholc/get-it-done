@@ -10,10 +10,13 @@ Handle your to-do list with **Get It Done!** Add, delete, and modify tasks with 
 * **React** 18.2.0
 
 ## Motivation ##
-By making this project I wanted to learn and practice:
+By creating this project I wanted to learn and practice:
 * **React Hooks** - useState, useEffect
 * **State management** - I dug into Redux, but finally decided that for this size of project useContext will be a better solution.
 * **React Bootstrap** components
 * Saving data in **session storage** 
 * Exercise **handling events**
 * Recreating visual prototype which I've built in **Figma**
+
+## Inspiration ##
+When making this project I was practicing React with <a href='https://www.youtube.com/@developedbyed'>Developedbyed</a> tutorials.
