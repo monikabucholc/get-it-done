@@ -19,4 +19,4 @@ By creating this project I wanted to learn and practice:
 * Recreating visual prototype which I've built in **Figma**
 
 ## Inspiration ##
-When making this project I was practicing React with <a href='https://www.youtube.com/@developedbyed'>Developedbyed</a> tutorials.
+While the project is my own, I drew upon <a href='https://www.youtube.com/@developedbyed'>Developedbyed</a> tutorials to guide my approach and learn new techniques.
